@@ -1,0 +1,254 @@
+Show the database
+->show databases;
+
+Create database:
+->create database <databasename>
+ create database sqldb
+
+Enter database:
+->use <databasename>
+use sqldb;
+
+Drop database:
+-> drop database <databasename>
+drop database sqldb;
+
+RENAME database:
+RENAME DATABASE old_database_name TO new_database_name;   
+
+Create table:
+-> create table <tablename>(attributes1 datatype , attributes2 datatype);
+
+Show all table in a database:
+-> show tables;
+
+Display table details:
+->select * from <tablename>
+select * from student;
+
+Copy another table into a new table:
+-> create table <newtablename> as select * from <oldtablename>;
+ create table student2 as select * from student;
+
+Drop table:
+->drop table <tablename>
+drop table student2
+
+Delete only the data in the table:
+-> truncate table <tablename>
+truncate table student2
+
+Show description of table:
+->desc <tablename>
+desc student
+
+
+RENAME table:
+ALTER TABLE table_name RENAME TO new_table_name;
+
+
+Alter table :
+
+=> Add column:
+-> Alter table <tablename> add <attribute datatype>
+one column:
+alter table student add address varchar(50);
+more column:
+ alter table student add (sample varchar(50), sam int);
+
+=>Drop column:
+-> Alter table <tablename> drop column <attribute datatype>
+one column:
+alter table student drop column <columnname> ;
+alter table student drop column address ;
+more column:
+->alter table student drop column <columnname1> , drop column <columnname2>;
+alter table student drop column <address> , drop column <sample>;
+
+=>Alter column datatype:
+->alter table <tablename> modify column <columnname datatype>;
+alter table student modify column address varchar(30);
+alter table student modify column address varchar(30), modify column year varchar(4);
+
+Constarints:
+=>Primary key:
+*>add back to attribute:
+create table <tablename> (attribute datatype primary key) ;
+create table student (rollno int primary key) ;
+
+->more than one primary key
+CREATE TABLE <tablename> (attribute datatype ,PRIMARY KEY (ID));
+CREATE TABLE <tablename> (ID int ,PRIMARY KEY (ID));
+
+-> assign name to Primary key:
+ create table staff (rollno int , name varchar(20),phoneno int(10) , age int(2) , constraint pk_staff  primary key(rollno, phoneno));
+
+*>Alter 
+->Single pk:
+Alter table staff add primary key (id);
+
+->multiple pk:
+Alter table staff add constraint pk primary key(id,phone,no);
+
+*>Drop:
+alter table <tablename> drop PRIMARY key; 
+
+=>Not null 
+
+create table <tablename> (column data not null , column attributename , ,.....)
+create table staff (rollno int not null)
+
+
+alter table <tablename> modify (column data not null , column attributename , ,.....)
+alter table staff modify rollno int not null;
+
+=>Unique
+
+create table <tablename> (column data unique , column attributename , ,.....)
+create table staffs (rollno int unique);
+
+alter table <tablename> add unique (attribute);
+alter table staffs add unique (name);
+
+=>CHECK
+
+create table <tablename> (column data check (age>18) , column attributename , ,.....);
+ create table staffs (rollno int check (rollno>18));
+insert into staffs values (19);
+
+create table staffs (rollno int ,age int, check (rollno<18 And age>18));
+
+ALTER TABLE staff ADD CHECK (Age>=18);
+
+ALTER TABLE Staff ADD CONSTRAINT CHK_PersonAge CHECK (Age>=18 AND name='Sandnes');
+
+ALTER TABLE staff DROP CHECK CHK_PersonAge;
+
+=>DEFAULT:
+create table <tablename> (attribute datatype DEFAULT value)
+create table staffs (age int DEFAULT 18)
+
+ALTER TABLE Staffs ALTER Name SET DEFAULT 'Sandnes';
+
+ALTER TABLE Staffs ALTER name DROP DEFAULT;
+
+=>FOREIGN KEY:
+person -> table-1
+order -> table-2
+
+create table person(rollno  int primary key , name varchar(20) ,phoneno int);
+
+create table orders (id int primary key ,name varchar(20),rollno int , foreign key (rollno) references person(rollno));
+
+only the rollno in person can be inserted into rollno of order
+
+ALTER TABLE Orders ADD FOREIGN KEY (rollno) REFERENCES Persons(rollno);
+
+ALTER TABLE Orders DROP FOREIGN KEY ;
+
+
+Index:
+
+create index ind on orders (id , name);
+
+create unique index ind on orders (id , name);
+
+ALTER TABLE table_name DROP INDEX index_name;
+
+Auro increment:(must defined after constraint key)
+
+create table student (id int primary key auto_increment); (DEFAULT=1)
+
+alter table student auto_increment=100;
+
+View(add as a new table):
+
+create view view1 as select rollno,name from person;
+
+select * from view1;
+
+create or replace view view1 as select rollno,age from person;
+
+drop view view1;
+
+DML(Data manipulation language): -> Insert, Update , Delete
+
+Distinct:
+ select distinct name from person;
+
+Where: (can be used with =,>,<,<=,>=,<>(not equal to),between,in,like)
+
+select * from person where phoneno=2;
+select * from person where phoneno <> 2;
+
+=>between
+ select * from person where age between 19 and 20;
+
+=>like
+select * from person where name like 'c%'; (start with letter c)
+ select * from person where name like '%gc%'; (gc anywhere in the word)
+ select * from person where name like '%cd%'; (end with letter cd)
+
+=>in
+  select * from person where name in ('abcd','efgh');
+
+And , Or , Not (takes priority):
+ select * from person where name='abcd' and age >18 or phoneno=5;
+  select * from person where name='abcd' and (age >18 or not phoneno = 5); 
+
+Order by:
+select * from person order by age ;            (asc)
+select * from person order by name desc;
+select * from person order by age asc ,rollno desc; (first age ascending then in that rollno descending)
+
+
+Insert: (using attributes):
+
+ insert into person values (7,'defg',8,23);
+ insert into person(rollno,phoneno) values (7,8);
+
+IS Null: (used to select the null rows):
+ select * from person where name is null;
+ select * from person where name is not null;
+ 
+ delete from person where name is null;
+
+Update:
+ update person set name='aaaa' where name ='efgh';
+ update person set name='aaaa',age=25 where name ='efgh' and age = 19 ;
+
+Delete:
+delete from person; (delete all data from table)
+delete from person where name="aaaa";
+
+
+LIMIT: (first 3 )
+select * from person limit 3;
+
+Min,Max,Count:
+select min(age) from person;
+select *from person where age = (select min(age) from person);
+
+select max(age) from person;
+select * from person where age = (select max(age) from person);
+
+Count:
+select count(*) from person;
+select count(distinct name) from person;
+select count( name) from person;
+
+Average:
+ select avg(age) from person ;
+
+Sum:
+ select sum(age) from person ;
+
+IN:
+ select * from person where age in (select age from person where name='aaaa');
+
+Alias(As):
+select name as Namey ,age as Agey from person;
+
+            multiple table:
+ select * from person as p , orders as o where p.rollno=o.rollno;
+
