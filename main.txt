@@ -2,3 +2,4 @@
 2. corsheader - Django - cors-headers.py
 3. sql injection - sqlInjection.js
 4.mysql queries -mysql-queries.txt
+5.mysql relationship (1-1 , 1-many , many-many) - mysql-relationship.txt

@@ -1,0 +1,62 @@
+show databases;
+
+create database office;
+
+use office;
+
+show tables;
+
+create table employee (id integer primary key , first_name varchar(255) , last_name varchar(255));
+
+desc employee;
+
+insert into employee values 
+(2,'steve' , 'rogers'),
+(3,'bruce' , 'banner'),
+(4,'scott' , 'lang')
+;
+
+select * from employee;
+
+create table userdetails (id integer primary key , age int , job varchar(200) , experience int , person_id int unique , foreign key (person_id) references employee(id));
+
+desc userdetails;
+
+insert into  userdetails values
+ (1,40, 'TL' , 15 , 1 ),
+  (2,40, 'SDEV' , 10 , 2),
+   (3,40, 'ASSDEV' , 8 , 3 ),
+    (4,40, 'JDEV' , 5 , 4 )
+;
+
+-- insert into  userdetails values (5,40, 'TL' , 15 , 1 );
+
+select * from userdetails;
+
+-- one to one relationship;
+select * from employee as e ,userdetails as u where e.id = u.person_id;
+
+create table teams (id integer primary key , name varchar(200) , person_id int , foreign key (person_id) references employee(id));
+
+insert into teams values 
+(1,'steve' ,1),
+(2,'bruce' , 1)
+;
+-- one to many 
+select * from employee as e , teams as t  where e.id = t.person_id;
+
+create table project (id integer primary key , name varchar(255));
+
+insert into project values 
+(1,'cockpit'),
+(2,'edith')
+;
+
+select * from project;
+
+create table employee_project (id integer primary key , person_id int , project_id int , foreign key (person_id) references employee(id) ,foreign key (project_id) references project(id)) ;
+
+insert into employee_project values (1 , 1 ,1) , (2,1,2) , (3,2,1) , (4,3,2) ;
+
+-- many to many 
+select * from  employee as e , employee_project as ep  , project as p where e.id = ep.person_id and p.id = ep.project_id order by e.id;
