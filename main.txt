@@ -1,5 +1,7 @@
 1.virtualenv for python - virtualenv.bat
-2. corsheader - Django - cors-headers.py
-3. sql injection - sqlInjection.js
-4.mysql queries -mysql-queries.txt
-5.mysql relationship (1-1 , 1-many , many-many) - mysql-relationship.txt
+2. django setup - django.bat
+    2.1 django files change - django.txt
+3. corsheader - Django - cors-headers.py
+4. sql injection - sqlInjection.js
+5.mysql queries -mysql-queries.txt
+6.mysql relationship (1-1 , 1-many , many-many) - mysql-relationship.txt

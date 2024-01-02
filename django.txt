@@ -1,0 +1,54 @@
+[1]main > settings.py
+INSTALLED_APPS = [
+    # ... add at end 
+    'app',
+]
+
+
+[2] app > urls.py
+from django.urls import path
+from .views import home
+
+urlpatterns = [
+    path('home/', home, name='home'),
+]
+
+[3] app > views.py
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse('Home')
+
+[4] main > urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('app/', include('app.urls')),
+]
+
+
+[5] main > settings.py
+INSTALLED_APPS = [
+    # ...
+    'rest_framework',
+    'app',
+]
+
+
+[6]main > settings.py
+ INSTALLED_APPS = [
+    # ...
+    'rest_framework',
+    'app',
+]
+
+[7]main > settings.py
+INSTALLED_APPS = [
+    # ...
+    'rest_framework',
+    'corsheaders'
+    'app',
+]
