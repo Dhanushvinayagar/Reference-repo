@@ -6,3 +6,4 @@
 5. mysql queries -mysql-queries.txt
 6. mysql relationship (1-1 , 1-many , many-many) - mysql-relationship.txt
 7. Query params encoding (axios , traditional) - query-params.js
+8. Adding .env files to any python file or framework - py-env.py
