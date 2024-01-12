@@ -8,3 +8,4 @@ Django blog - https://testdriven.io/blog/
 6. mysql relationship (1-1 , 1-many , many-many) - mysql-relationship.txt
 7. Query params encoding (axios , traditional) - query-params.js
 8. Adding .env files to any python file or framework - py-env.py
+9. Requirements.txt file in py - requirements.bat
