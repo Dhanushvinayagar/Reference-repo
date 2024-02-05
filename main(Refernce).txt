@@ -1,0 +1,3 @@
+1. Generate random data (json,sql,nosql,csv) - https://mockaroo.com/
+2. Screen size checker for responsiveness (css) - https://screensiz.es/
+3. Upload svg image - https://svgshare.com/
