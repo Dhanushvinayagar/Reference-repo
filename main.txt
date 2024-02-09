@@ -12,3 +12,4 @@ Django blog - https://testdriven.io/blog/
 10.API call - apicall (folder)
 11. Mantinee style css (overwrite) - mantinee/styles
 12. Local build check - build.bat
+13. vite env file - vite-env(folder)
