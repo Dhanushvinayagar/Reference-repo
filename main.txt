@@ -9,3 +9,6 @@ Django blog - https://testdriven.io/blog/
 7. Query params encoding (axios , traditional) - query-params.js
 8. Adding .env files to any python file or framework - py-env.py
 9. Requirements.txt file in py - requirements.bat
+10.API call - apicall (folder)
+11. Mantinee style css (overwrite) - mantinee/styles
+12. Local build check - build.bat
