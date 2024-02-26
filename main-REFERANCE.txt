@@ -13,3 +13,5 @@ Django blog - https://testdriven.io/blog/
 11. Mantinee style css (overwrite) - mantinee/styles
 12. Local build check - build.bat
 13. vite env file - vite-env(folder)
+14. Django Css admin ui - django-css-BE.py
+15. Custom middleware authentication (Microsoft jwt auth)- dj-middleware-token(folder)
