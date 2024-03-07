@@ -15,3 +15,4 @@ Django blog - https://testdriven.io/blog/
 13. vite env file - vite-env(folder)
 14. Django Css admin ui - django-css-BE.py
 15. Custom middleware authentication (Microsoft jwt auth)- dj-middleware-token(folder)
+16. mutiple env files in django - mutiple-env-dj (folder)
