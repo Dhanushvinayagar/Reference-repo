@@ -10,6 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ENVIRONMENT = os.environ.get("ENV")
 if ENVIRONMENT == "dev":
+    print("development")
+    environ.Env.read_env(os.path.join(BASE_DIR, ".env.dev"))
+elif ENVIRONMENT == "prod":
+    print("production")
     environ.Env.read_env(os.path.join(BASE_DIR, ".env.dev"))
 else:
     environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
